@@ -1,0 +1,231 @@
+@font-face {
+    font-family: museo;
+    src: url("../fonts/Museo 300.otf");
+
+}
+@font-face {
+    font-family: museoItalic;
+    src: url("'../fonts/Museo 900.otf'");
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0px;
+    size: 100%;
+}
+
+div#text-strip {
+    font-size: 120%;
+    opacity: .75;
+
+}
+
+.carousel-caption {
+   
+    bottom: 0;
+    top: 50%;
+    background-color: dimgrey;
+    margin-right: -500px;
+    margin-left: -500px;
+}
+
+.card .text-secondary{
+    width:100%;
+}
+
+main div {
+    display: block;
+}
+header{
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+}
+.subtitle{
+    color: #F47B20;
+}
+.banners{
+
+    float: right;
+    position: relative;
+    top:7px;
+    right: 15px;
+    margin: 0px 15px 0px;
+}
+/*Correction for the LOGO*/
+#logo{
+    position: relative;
+    top: 3px;
+}
+
+.caption{
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); 
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+    font-family: museo;
+}
+
+.caption span.border {
+    background-color: #111;
+    position: absolute;
+    bottom: 50vh;
+    left: 44%;
+    text-align: center;
+    color: #fff;
+    padding: 18px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    opacity: 0.5;
+    font-family: museo;
+    border-radius: 5px;
+}
+
+div.home{
+    background-image: url(../img/writing4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    margin-top: 125px;
+    width: 100%;
+    height: 100%;
+}
+
+div#menu{
+    background-color: #003767;
+    overflow: hidden;
+    padding:10px;
+}
+
+div.navigation{
+    background-color: #F47B20;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    font-family: museo;
+    box-shadow: 0px 5px 15px rgb(66, 66, 66);
+
+}
+.navigation a{
+    display: inline-block;
+    padding: 11px 13px;
+    text-decoration: none;
+    font-weight: bold;
+    color:white;
+    font-size: 18px;
+}
+
+.navigation a:hover{
+background-color: #FAA634;
+transition: 0.7s;
+}
+
+.navigation a.icon{
+    display: none;
+}
+
+.card-img-top{
+    opacity:.75;
+    border: 0px;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-img-top:hover{
+    opacity:1;
+    transition: 0.7s;
+}
+
+.container .card.mb-3{
+    border-radius: 10px;
+    display: inline-flex;
+    flex: 2 1;
+    margin: 10px;
+}
+
+.card.mb-3:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: 0.7s;
+    
+}
+
+.row{
+    width: 100%;
+    margin-left: 1px;
+}
+
+.card.text-secondary img{
+    height: 75px;
+    opacity: .75;
+}
+
+.container{
+    position: absolute;
+    min-width: 100%;
+    margin-top: 75px;
+    font-family: museo;
+    margin-left: -10px;
+}
+
+
+footer {
+    position: absolute;
+    font-family: museo;
+    font-size: 12px;
+    right: 0;
+    bottom: -15vh;
+    left: 0;
+    padding: 5px;
+    color: gray;
+    text-align: center;
+    background-color: #003767;
+  }
+
+
+@media screen and (max-width: 600px) {
+    .navigation a:not(:first-child) {display: none;}
+    .navigation a.icon {
+      float: right;
+      display: block;
+    }
+}
+
+  @media screen and (max-width: 600px) {
+    .navigation.responsive {position: relative;}
+    .navigation.responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .navigation.responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+
+    div.home{
+        background-image: url(../img/writing-Phone4.jpg);
+        background-repeat: no-repeat;
+        background-size:100% 100%;
+        position: absolute;
+        margin-top: 125px;
+    }
+    .caption{
+        width: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-shrink: inherit;
+    }
+
+    .caption span.border{
+        margin: 0 0 0 0 ;
+        left: 19%;
+    }
+  }
