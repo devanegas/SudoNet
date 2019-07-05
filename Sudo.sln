@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.489
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudo", "WebApplication1\Sudo.csproj", "{C5215603-B626-48AA-9EB9-867CE8C38E24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudo", "Sudo\Sudo.csproj", "{399CA301-6728-4940-B15C-15B6590A77A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C5215603-B626-48AA-9EB9-867CE8C38E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5215603-B626-48AA-9EB9-867CE8C38E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5215603-B626-48AA-9EB9-867CE8C38E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5215603-B626-48AA-9EB9-867CE8C38E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399CA301-6728-4940-B15C-15B6590A77A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399CA301-6728-4940-B15C-15B6590A77A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399CA301-6728-4940-B15C-15B6590A77A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399CA301-6728-4940-B15C-15B6590A77A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
