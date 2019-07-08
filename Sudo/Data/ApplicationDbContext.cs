@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Sudo.Models;
 
 namespace Sudo.Data
 {
@@ -12,5 +13,9 @@ namespace Sudo.Data
             : base(options)
         {
         }
+
+        public DbSet<Event> Events;
+
+        public DbSet<Sudo.Models.Event> Event { get; set; }
     }
 }
