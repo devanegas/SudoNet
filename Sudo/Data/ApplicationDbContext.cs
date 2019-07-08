@@ -14,8 +14,6 @@ namespace Sudo.Data
         {
         }
 
-        public DbSet<Event> Events;
-
-        public DbSet<Sudo.Models.Event> Event { get; set; }
+        public DbSet<Event> Events { get; set; }
     }
 }

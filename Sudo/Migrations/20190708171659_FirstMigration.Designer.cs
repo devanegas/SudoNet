@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Sudo.Data;
 
-namespace Sudo.Data.Migrations
+namespace Sudo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190708161438_UltimateMigration")]
-    partial class UltimateMigration
+    [Migration("20190708171659_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -186,9 +186,7 @@ namespace Sudo.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Image");
-
-                    b.Property<Guid>("ImageId");
+                    b.Property<byte[]>("Image");
 
                     b.Property<DateTime>("Time");
 
@@ -196,7 +194,7 @@ namespace Sudo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Event");
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

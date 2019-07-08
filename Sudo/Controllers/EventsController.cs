@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,7 @@ namespace Sudo.Controllers
         // GET: Events
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Event.ToListAsync());
+            return View(await _context.Events.ToListAsync());
         }
 
         // GET: Events/Details/5
@@ -33,7 +35,7 @@ namespace Sudo.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Event
+            var @event = await _context.Events
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {
@@ -54,15 +56,31 @@ namespace Sudo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ImageId,Image,Title,Time,Description")] Event @event)
+        public async Task<IActionResult> Create([Bind("Id,Image,Title,Time,Description")] Event @event, IFormFile image)
+
         {
-            if (ModelState.IsValid)
+            try
             {
-                @event.Id = Guid.NewGuid();
-                _context.Add(@event);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    if (image != null)
+                    {
+                        var stream = new MemoryStream();
+                        await image.CopyToAsync(stream);
+                        @event.Image = stream.ToArray();
+                    }
+                    @event.Id = Guid.NewGuid();
+                    _context.Add(@event);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
             }
+            catch(Exception e)
+            {
+                Console.Write(e);
+            }
+
             return View(@event);
         }
 
@@ -74,7 +92,7 @@ namespace Sudo.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Event.FindAsync(id);
+            var @event = await _context.Events.FindAsync(id);
             if (@event == null)
             {
                 return NotFound();
@@ -87,7 +105,7 @@ namespace Sudo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,ImageId,Image,Title,Time,Description")] Event @event)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Image,Title,Time,Description")] Event @event, IFormFile image)
         {
             if (id != @event.Id)
             {
@@ -98,6 +116,12 @@ namespace Sudo.Controllers
             {
                 try
                 {
+                    if (image != null)
+                    {
+                        var stream = new MemoryStream();
+                        await image.CopyToAsync(stream);
+                        @event.Image = stream.ToArray();
+                    }
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
@@ -125,7 +149,7 @@ namespace Sudo.Controllers
                 return NotFound();
             }
 
-            var @event = await _context.Event
+            var @event = await _context.Events
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@event == null)
             {
@@ -140,15 +164,15 @@ namespace Sudo.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var @event = await _context.Event.FindAsync(id);
-            _context.Event.Remove(@event);
+            var @event = await _context.Events.FindAsync(id);
+            _context.Events.Remove(@event);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool EventExists(Guid id)
         {
-            return _context.Event.Any(e => e.Id == id);
+            return _context.Events.Any(e => e.Id == id);
         }
     }
 }
