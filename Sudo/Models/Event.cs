@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Sudo.Models
 {
+    //TODO ADD Day and Speaker
     public class Event
     {
         public Guid Id { get; set; }

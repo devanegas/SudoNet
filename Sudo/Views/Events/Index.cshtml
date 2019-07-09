@@ -2,59 +2,53 @@
 
 @{
     ViewData["Title"] = "Index";
+    List<Sudo.Models.Event> Jan = new List<Sudo.Models.Event>();
+    List<Sudo.Models.Event> Feb = new List<Sudo.Models.Event>();
+    List<Sudo.Models.Event> Mar = new List<Sudo.Models.Event>();
+    List<Sudo.Models.Event> Apr = new List<Sudo.Models.Event>();
+    List<Sudo.Models.Event> Other = new List<Sudo.Models.Event>();
+
 }
-
-<h1>Index</h1>
-
-<p>
+@foreach (var item in Model)
+{
+    @if (item.Time.Month == 1)
+    {
+        Jan.Add(item);
+    }
+    @if (item.Time.Month == 2)
+    {
+        Feb.Add(item);
+    }
+    @if (item.Time.Month == 3)
+    {
+        Mar.Add(item);
+    }
+    @if (item.Time.Month == 4)
+    {
+        Apr.Add(item);
+    }
+    @if (item.Time.Month > 4)
+    {
+        Other.Add(item);
+    }
+}
+<div class="container">
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-            <th>
-                @if (item.Image.Length != null)
-                {
-                    @Html.DisplayNameFor(model => model.Image)
+    <div class="row">
+        @foreach (var item in Jan)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            DateTime date = item.Time;
 
-                    var base64 = Convert.ToBase64String(item.Image);
-                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            <div class="card mb-3">
+                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="subtitle">@Html.DisplayNameFor(model => model.Title) </span>Tuesday, Jan 15th - Alex Mickelson </h5>
+                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
+                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                </div>
+            </div>
+        }
+</div>
 
-                    <img src="@imgSrc" />
-                }
-            </th>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
