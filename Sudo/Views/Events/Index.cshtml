@@ -3,11 +3,6 @@
 @{
     ViewData["Title"] = "Index";
     List<Sudo.Models.Event> OrderedEvents = new List<Sudo.Models.Event>();
-    List<Sudo.Models.Event> Jan = new List<Sudo.Models.Event>();
-    List<Sudo.Models.Event> Feb = new List<Sudo.Models.Event>();
-    List<Sudo.Models.Event> Mar = new List<Sudo.Models.Event>();
-    List<Sudo.Models.Event> Apr = new List<Sudo.Models.Event>();
-    List<Sudo.Models.Event> Other = new List<Sudo.Models.Event>();
 
 }
 @{ 
@@ -16,7 +11,8 @@
 
 
 <div class="container">
-    @{ 
+    <a asp-action="Create">Create New</a>
+    @{
         var groupedMonths = OrderedEvents.GroupBy(x => x.Time.Month);
     }
     @for (int i = 0; i < groupedMonths.Count(); i++)
@@ -24,7 +20,8 @@
         <div class="card text-secondary">
             <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
             <div class="card-img-overlay">
-                <h2 class="card-title"><p class="text-center">Test</p></h2>
+                @{string monthTitle = new DateTime(2010, groupedMonths.ElementAt(i).Key, 1).ToString("MMMM");}
+                <h2 class="card-title"><p class="text-center"> @monthTitle</p></h2>
             </div>
         </div>
         <div class="row">
@@ -37,7 +34,7 @@
                 <div class="card mb-3">
                     <img class="card-img-top" src="@imgSrc" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - Alex Mickelson </h5>
+                        <h5 class="card-title"><span class="subtitle">@item.Title: </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - Alex Mickelson </h5>
                         <p class="card-text">@item.Description</p>
                         <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
