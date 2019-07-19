@@ -32,8 +32,24 @@
         Other.Add(item);
     }
 }
+
 <div class="container">
     <a asp-action="Create">Create New</a>
+    <div class="card text-secondary">
+        <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
+        <div class="card-img-overlay">
+            <h2 class="card-title"><p class="text-center">January</p></h2>
+        </div>
+    </div>
+    @{
+        Jan = Jan.OrderBy(x => x.Time.Day).ToList();
+        Feb.OrderBy(x => x.Time.Day).ToList();
+        Mar.OrderBy(x => x.Time.Day).ToList();
+        Apr.OrderBy(x => x.Time.Day).ToList();
+        Other.OrderBy(x => x.Time.Day).ToList();
+
+    }
+    
     <div class="row">
         @foreach (var item in Jan)
         {
@@ -44,11 +60,87 @@
             <div class="card mb-3">
                 <img class="card-img-top" src="@imgSrc" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@Html.DisplayNameFor(model => model.Title) </span>Tuesday, Jan 15th - Alex Mickelson </h5>
+                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - Alex Mickelson </h5>
                     <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
                     <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
                 </div>
             </div>
         }
+    </div>
+
+    <div class="card text-secondary">
+        <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
+        <div class="card-img-overlay">
+            <h2 class="card-title"><p class="text-center">February</p></h2>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in Feb)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            DateTime date = item.Time;
+
+            <div class="card mb-3">
+                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
+                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
+                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        @foreach (var item in Mar)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            DateTime date = item.Time;
+
+            <div class="card mb-3">
+                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
+                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
+                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        @foreach (var item in Apr)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            DateTime date = item.Time;
+
+            <div class="card mb-3">
+                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
+                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
+                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="row">
+        @foreach (var item in Other)
+        {
+            var base64 = Convert.ToBase64String(item.Image);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            DateTime date = item.Time;
+
+            <div class="card mb-3">
+                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
+                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
+                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
