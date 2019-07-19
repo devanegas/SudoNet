@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    List<Sudo.Models.Event> OrderedEvents = new List<Sudo.Models.Event>();
     List<Sudo.Models.Event> Jan = new List<Sudo.Models.Event>();
     List<Sudo.Models.Event> Feb = new List<Sudo.Models.Event>();
     List<Sudo.Models.Event> Mar = new List<Sudo.Models.Event>();
@@ -9,138 +10,43 @@
     List<Sudo.Models.Event> Other = new List<Sudo.Models.Event>();
 
 }
-@foreach (var item in Model)
-{
-    @if (item.Time.Month == 1)
-    {
-        Jan.Add(item);
-    }
-    @if (item.Time.Month == 2)
-    {
-        Feb.Add(item);
-    }
-    @if (item.Time.Month == 3)
-    {
-        Mar.Add(item);
-    }
-    @if (item.Time.Month == 4)
-    {
-        Apr.Add(item);
-    }
-    @if (item.Time.Month > 4)
-    {
-        Other.Add(item);
-    }
+@{ 
+   OrderedEvents = Model.OrderBy(x => x.Time).ToList();
 }
 
+
 <div class="container">
-    <a asp-action="Create">Create New</a>
-    <div class="card text-secondary">
-        <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
-        <div class="card-img-overlay">
-            <h2 class="card-title"><p class="text-center">January</p></h2>
-        </div>
-    </div>
-    @{
-        Jan = Jan.OrderBy(x => x.Time.Day).ToList();
-        Feb.OrderBy(x => x.Time.Day).ToList();
-        Mar.OrderBy(x => x.Time.Day).ToList();
-        Apr.OrderBy(x => x.Time.Day).ToList();
-        Other.OrderBy(x => x.Time.Day).ToList();
-
+    @{ 
+        var groupedMonths = OrderedEvents.GroupBy(x => x.Time.Month);
     }
-    
-    <div class="row">
-        @foreach (var item in Jan)
-        {
-            var base64 = Convert.ToBase64String(item.Image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            DateTime date = item.Time;
-
-            <div class="card mb-3">
-                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - Alex Mickelson </h5>
-                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
-                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
-                </div>
+    @for (int i = 0; i < groupedMonths.Count(); i++)
+    {
+        <div class="card text-secondary">
+            <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
+            <div class="card-img-overlay">
+                <h2 class="card-title"><p class="text-center">Test</p></h2>
             </div>
-        }
-    </div>
-
-    <div class="card text-secondary">
-        <img class="card-img" src="~/img/januaryFlag.jpg" alt="Card image">
-        <div class="card-img-overlay">
-            <h2 class="card-title"><p class="text-center">February</p></h2>
         </div>
-    </div>
-    <div class="row">
-        @foreach (var item in Feb)
-        {
-            var base64 = Convert.ToBase64String(item.Image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            DateTime date = item.Time;
+        <div class="row">
+            @foreach (var item in OrderedEvents.Where(x => x.Time.Month == groupedMonths.ElementAt(i).Key))
+            {
+                var base64 = Convert.ToBase64String(item.Image);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                DateTime date = item.Time;
 
-            <div class="card mb-3">
-                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
-                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
-                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                <div class="card mb-3">
+                    <img class="card-img-top" src="@imgSrc" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - Alex Mickelson </h5>
+                        <p class="card-text">@item.Description</p>
+                        <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-    <div class="row">
-        @foreach (var item in Mar)
-        {
-            var base64 = Convert.ToBase64String(item.Image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            DateTime date = item.Time;
-
-            <div class="card mb-3">
-                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
-                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
-                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
-                </div>
-            </div>
-        }
-    </div>
-    <div class="row">
-        @foreach (var item in Apr)
-        {
-            var base64 = Convert.ToBase64String(item.Image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            DateTime date = item.Time;
-
-            <div class="card mb-3">
-                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
-                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
-                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
-                </div>
-            </div>
-        }
-    </div>
-    <div class="row">
-        @foreach (var item in Other)
-        {
-            var base64 = Convert.ToBase64String(item.Image);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            DateTime date = item.Time;
-
-            <div class="card mb-3">
-                <img class="card-img-top" src="@imgSrc" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title"><span class="subtitle">@item.Title </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day -  Alex Mickelson </h5>
-                    <p class="card-text">Come and learn about one of the most relevant operating systems of the modern era. In this meeting you will learn how it everything got started, and how easily it is for you to dive into the linux world.</p>
-                    <p class="card-text"><small class="text-muted">GRSC 143 - 4:30 pm</small></p>
-                </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
 </div>
 
+  
