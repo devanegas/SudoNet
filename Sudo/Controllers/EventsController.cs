@@ -56,7 +56,7 @@ namespace Sudo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Image,Title,Time,Description")] Event @event, IFormFile image)
+        public async Task<IActionResult> Create([Bind("Id,Image,Title,Time,Location, Speaker,Description")] Event @event, IFormFile image)
 
         {
             try
@@ -97,6 +97,7 @@ namespace Sudo.Controllers
             {
                 return NotFound();
             }
+            ViewBag.img = @event.Image;
             return View(@event);
         }
 
@@ -105,7 +106,7 @@ namespace Sudo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Image,Title,Time,Description")] Event @event, IFormFile image)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Image,Title,Time,Location, Speaker,Description")] Event @event, IFormFile image)
         {
             if (id != @event.Id)
             {
@@ -116,12 +117,15 @@ namespace Sudo.Controllers
             {
                 try
                 {
+                    
                     if (image != null)
                     {
                         var stream = new MemoryStream();
                         await image.CopyToAsync(stream);
                         @event.Image = stream.ToArray();
                     }
+                    //TODO: FIX IMAGE ISSUE
+                    //@event.Image = 
                     _context.Update(@event);
                     await _context.SaveChangesAsync();
                 }
