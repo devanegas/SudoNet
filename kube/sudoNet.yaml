@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sudonet-deployment
+  labels:
+    app: sudonet
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sudonet
+  template:
+    metadata:
+      labels:
+        app: sudonet
+    spec:
+      containers:
+      - name: sudonet
+        image: alexmickelson/sudonet:latest
+        ports:
+        - containerPort: 80
+        # env:
+        # - name: "ASPNETCORE_ENVIRONMENT"
+        #   value: "Kubernetes"
+      #   volumeMounts:
+      #   - name: secrets
+      #     mountPath: /app/secrets
+      #     readOnly: true
+      # volumes:
+      # - name: secrets
+      #   secret:
+      #     secretName: secret-appsettings
