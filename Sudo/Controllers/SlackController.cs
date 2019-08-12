@@ -38,8 +38,8 @@ namespace Sudo.Controllers
             var request = new RestRequest("/api/users.admin.invite", Method.POST);
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-            var coordinatorUri = Environment.GetEnvironmentVariable("SLACK_TOKEN");
-            request.AddParameter("application/x-www-form-urlencoded", $"email={user.email}&token={_configuration["token"]}&first_name={user.firstName}&last_name={user.lastName}", ParameterType.RequestBody);
+            var tmp = $"email={user.email}&token={_configuration["slack:token"]}&first_name={user.firstName}&last_name={user.lastName}";
+            request.AddParameter("application/x-www-form-urlencoded", $"email={user.email}&token={_configuration["slack:token"]}&first_name={user.firstName}&last_name={user.lastName}", ParameterType.RequestBody);
             var res = client.Execute(request);
 
             if (res.StatusCode != HttpStatusCode.OK)
