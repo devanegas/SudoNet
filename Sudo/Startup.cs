@@ -49,6 +49,7 @@ namespace Sudo
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
+                .AddJsonFile("/app/secrets/appsettings.secrets.json", optional: true)
                 .AddEnvironmentVariables();
 
 
