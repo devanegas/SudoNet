@@ -1,3 +1,6 @@
 #!/bin/bash
 
-docker build --name 
+docker build -t alexmickelson/sudonet \
+    -f ../Sudo/Dockerfile ..
+
+docker push alexmickelson/sudonet
