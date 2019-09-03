@@ -19,9 +19,9 @@ spec:
         image: alexmickelson/sudonet:latest
         ports:
         - containerPort: 80
-        # env:
-        # - name: "ASPNETCORE_ENVIRONMENT"
-        #   value: "Kubernetes"
+        env:
+        - name: "ASPNETCORE_ENVIRONMENT"
+          value: "Kubernetes"
         volumeMounts:
         - name: secrets
           mountPath: /app/secrets
