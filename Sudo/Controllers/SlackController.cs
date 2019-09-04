@@ -25,7 +25,7 @@ namespace Sudo.Controllers
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken(Order = 2000)]
+        [IgnoreAntiforgeryToken]
         public IActionResult AddUser([FromForm]UserModel user)
         {
             //validate email
