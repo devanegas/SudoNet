@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sudonet
-        image: alexmickelson/sudonet:latest
+        image: alexmickelson/sudonet:0.1
         imagePullPolicy: Always
         ports:
         - containerPort: 80
