@@ -17,6 +17,7 @@ namespace Sudo.Controllers
         public SlackController(IConfiguration config)
         {
             _configuration = config;
+            Console.WriteLine(_configuration["slack:token"]);
         }
 
         public IActionResult Index()
