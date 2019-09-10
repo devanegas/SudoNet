@@ -18,7 +18,6 @@ namespace Sudo.Controllers
         public SlackController(IOptions<MySecret> config)
         {
             _token = config.Value.token;
-            Console.WriteLine("config: " + _token + "\n\n\n\n");
         }
 
         public IActionResult Index()
