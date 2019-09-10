@@ -13,8 +13,8 @@ namespace Sudo.Controllers
 {
     public class SlackController : Controller
     {
-        public IConfiguration _configuration { get; set; }
-        public SlackController(IConfiguration config)
+        private IOptions<MyConfig> _configuration { get; set; }
+        public HomeController(IOptions<MyConfig> config)
         {
             _configuration = config;
             Console.WriteLine("config: " + _configuration["slack:token"]);
