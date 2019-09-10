@@ -51,7 +51,8 @@ namespace Sudo
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("/app/secrets/secrets.json", optional: true)
                 .AddEnvironmentVariables();
-
+            Console.WriteLine("Secrets File Exists: " + File.Exists("/app/secrets/secrets.json"));
+            Console.WriteLine("config: " + Configuration["slack:token"]);
 
             if (env.IsDevelopment())
             {
