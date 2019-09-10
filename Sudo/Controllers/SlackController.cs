@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using RestSharp;
 using Sudo.Models;
 
@@ -13,11 +14,11 @@ namespace Sudo.Controllers
 {
     public class SlackController : Controller
     {
-        private IOptions<MyConfig> _configuration { get; set; }
-        public HomeController(IOptions<MyConfig> config)
+        private string _token { get; set; }
+        public SlackController(IOptions<MySecret> config)
         {
-            _configuration = config;
-            Console.WriteLine("config: " + _configuration["slack:token"]);
+            _token = config.Value.token;
+            Console.WriteLine("config: " + _token + "\n\n\n\n");
         }
 
         public IActionResult Index()
@@ -41,8 +42,8 @@ namespace Sudo.Controllers
             var request = new RestRequest("/api/users.admin.invite", Method.POST);
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
 
-            var tmp = $"email={user.email}&token={_configuration["slack:token"]}&first_name={user.firstName}&last_name={user.lastName}";
-            request.AddParameter("application/x-www-form-urlencoded", $"email={user.email}&token={_configuration["slack:token"]}&first_name={user.firstName}&last_name={user.lastName}", ParameterType.RequestBody);
+            var tmp = $"email={user.email}&token={_token}&first_name={user.firstName}&last_name={user.lastName}";
+            request.AddParameter("application/x-www-form-urlencoded", $"email={user.email}&token={_token}&first_name={user.firstName}&last_name={user.lastName}", ParameterType.RequestBody);
             Console.WriteLine("Sending Post Request: " + user.email);
             var res = client.Execute(request);
             Console.WriteLine("recieved request: " + res.Content);

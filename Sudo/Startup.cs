@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Sudo.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Sudo.Models;
 
 namespace Sudo
 {
@@ -45,10 +46,12 @@ namespace Sudo
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-            services.Configure<MyConfig>(Configuration.GetSection("MyConfig"));
-            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Add functionality to inject IOptions<T>
+            services.AddOptions();
+
+            services.Configure<MySecret>(Configuration.GetSection("slack"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
