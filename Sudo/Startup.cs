@@ -48,6 +48,10 @@ namespace Sudo
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                .AddEnvironmentVariables();
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
