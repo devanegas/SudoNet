@@ -12,11 +12,16 @@
 
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-body{
-    margin: 0px;
-    size: 100%;
+body {
+    margin: 0;
+    padding: 0;
+    height:100%;
+
 }
 
 div#text-strip {
@@ -25,21 +30,42 @@ div#text-strip {
 
 }
 
+
+.imgSlider {
+    width: inherit;
+    object-fit: cover;
+    height: 94vh;
+    position:static;
+}
+
+main.pb-3 {
+    min-height: 100% !important;
+}
+
 .carousel-caption {
-   
     bottom: 0;
-    top: 50%;
+    top: auto;
+    padding: 40px;
     background-color: dimgrey;
-    margin-right: -500px;
-    margin-left: -500px;
+    min-width: 100%;
+    left: 0%;
 }
 
 .card .text-secondary{
     width:100%;
 }
 
+div#Slider {
+    position:relative;
+    object-fit: fill;
+}
+
+main {
+    min-height: 100% !important;
+}
 main div {
     display: block;
+
 }
 header{
     position: fixed;
@@ -66,7 +92,7 @@ header{
 .caption{
     position: absolute;
     bottom: 0;
-    background: rgb(0, 0, 0); 
+    background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5);
     color: #f1f1f1;
     width: 100%;
@@ -99,10 +125,10 @@ div.home{
     height: 100%;
 }
 
-div#menu{
+div#menu {
     background-color: #003767;
     overflow: hidden;
-    padding:10px;
+    padding: 10px;
 }
 
 div.navigation{
@@ -153,7 +179,7 @@ transition: 0.7s;
 .card.mb-3:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: 0.7s;
-    
+
 }
 
 .row{
@@ -166,14 +192,31 @@ transition: 0.7s;
     opacity: .75;
 }
 
-.container{
+/*.container {
     position: absolute;
     min-width: 100%;
     margin-top: 75px;
     font-family: museo;
     margin-left: -10px;
+    min-height: 100%;
+}*/
+
+
+
+.d-block w-100 {
+    object-fit: cover;
+    position: relative;
 }
 
+.container {
+    position: relative;
+    font-family: museo;
+    min-height: 100% !important;
+    min-width: 100%;
+    padding-top: 80px;
+
+    object-fit:fill;
+}
 
 footer {
     position: absolute;
