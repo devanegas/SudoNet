@@ -11,7 +11,7 @@
 
 
 <div class="container">
-    <a asp-action="Create">Create New</a>
+    @*<a asp-action="Create">Create New</a>*@
     @{
         var groupedMonths = OrderedEvents.GroupBy(x => x.Time.Month);
     }
@@ -46,8 +46,8 @@
                         <h5 class="card-title"><span class="subtitle">@item.Title: </span>@item.Time.DayOfWeek, @item.Time.ToString("MMMM") @item.Time.Day - @item.Speaker </h5>
                         <p class="card-text">@item.Description</p>
                         <p class="card-text"><small class="text-muted">@item.Location - @item.Time</small></p>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
                     </div>
                 </div>
             }
