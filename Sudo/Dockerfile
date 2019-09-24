@@ -7,7 +7,7 @@ WORKDIR /src
 COPY ["Sudo/Sudo.csproj", "Sudo/"]
 RUN dotnet restore "Sudo/Sudo.csproj"
 COPY . .
-WORKDIR "/src/Sudo"
+WORKDIR /src/Sudo/
 RUN dotnet build "Sudo.csproj" -c Release -o /app
 
 FROM build AS publish
